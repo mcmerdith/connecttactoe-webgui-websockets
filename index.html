@@ -1,0 +1,17 @@
+<script src="scripts/eventhandler.js"></script>
+<script src="scripts/websockets.js"></script>
+<script src="scripts/command.js"></script>
+<script type="text/javascript">
+  eventHandler.registerEvent("socket-disconnect", function(e) {
+    console.log("Socket disconnect: " + e);
+  });
+  eventHandler.registerEvent("socket-connect", function(e) {
+    websocket.send("query");
+  });
+
+  eventHandler.registerEvent("socket-byte-buffer-message", function(e) {
+    console.log(e.data);
+  });
+
+  var websocket = new SocketConnect(4000);
+</script>
